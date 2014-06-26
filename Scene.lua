@@ -2,7 +2,7 @@
 Ballet-battle — Scene manager functions
 
 Version: 0.0.1
-Last update: 24.06.14
+Last update: 26.06.14
 Programmer: Wattanit Hotrakool (@rorasa)
             CannonLight Games
 -----------------------------------------------------------
@@ -76,6 +76,10 @@ function newPage()
 		elseif order[1] == "goto" then
 			Game_Params.currentPage = order[2]
 			Game_Params.Page = loadPage(order[2])
+		elseif order[1] == "end" then
+			Game_Params.Scene = 0
+			love.load()
+			return
 		end
 	end
 end
@@ -99,6 +103,10 @@ function updatePage()
 		elseif order[1] == "goto" then
 			Game_Params.currentPage = order[2]
 			Game_Params.Page = loadPage(order[2])
+		elseif order[1] == "end" then
+			Game_Params.Scene = 0
+			love.load()
+			return
 		end
 	end
 	newPage()
@@ -117,6 +125,10 @@ function changeBG(BGName)
 		Graphics.currentBG = Graphics.BG.mel_school_outside
 	elseif BGName == "mel_school_inside" then
 		Graphics.currentBG = Graphics.BG.mel_school_inside
+	elseif BGName == "christina_school_outside" then
+		Graphics.currentBG = Graphics.BG.christina_school_outside
+	elseif BGName == "christina_school_inside" then
+		Graphics.currentBG = Graphics.BG.christina_school_inside
 	elseif BGName == "red_hall_inside" then
 		Graphics.currentBG = Graphics.BG.red_hall_inside
 	end
@@ -141,6 +153,22 @@ function changeChar(CharName)
 		Graphics.currentChar = Graphics.Char.mel_1
 	elseif CharName == "mel_2" then
 		Graphics.currentChar = Graphics.Char.mel_2
+	elseif CharName == "lawrance_1" then
+		Graphics.currentChar = Graphics.Char.lawrance_1
+	elseif CharName == "lawrance_2" then
+		Graphics.currentChar = Graphics.Char.lawrance_2
+	elseif CharName == "christina_1" then
+		Graphics.currentChar = Graphics.Char.christina_1
+	elseif CharName == "christina_2" then
+		Graphics.currentChar = Graphics.Char.christina_2
+	elseif CharName == "christina_3" then
+		Graphics.currentChar = Graphics.Char.christina_3
+	elseif CharName == "christina_4" then
+		Graphics.currentChar = Graphics.Char.christina_4
+	elseif CharName == "christina_5" then
+		Graphics.currentChar = Graphics.Char.christina_5
+	elseif CharName == "christina_6" then
+		Graphics.currentChar = Graphics.Char.christina_6
 	end
 end
 

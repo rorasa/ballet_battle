@@ -136,6 +136,10 @@ function loadGraphics()
 	Graphics.BG.mel_school_outside = love.graphics.newImage("/images/BG/mel_school_outside.png")
 	-- load mel_school_inside BG
 	Graphics.BG.mel_school_inside = love.graphics.newImage("/images/BG/mel_school_inside.png")
+	-- load christina_school_outside BG
+	Graphics.BG.christina_school_outside = love.graphics.newImage("/images/BG/christina_school_outside.png")
+	-- load christina_school_inside BG
+	Graphics.BG.christina_school_inside = love.graphics.newImage("/images/BG/christina_school_inside.png")
 	-- load red_hall_inside BG
 	Graphics.BG.red_hall_inside = love.graphics.newImage("/images/BG/red_hall_inside.jpg")
 	
@@ -155,6 +159,16 @@ function loadGraphics()
 	-- load mel faces
 	Graphics.Char.mel_1 = love.graphics.newImage("/images/Char/mel_1.png")
 	Graphics.Char.mel_2 = love.graphics.newImage("/images/Char/mel_2.png")
+	-- load lawrance faces
+	Graphics.Char.lawrance_1 = love.graphics.newImage("/images/Char/lawrance_1.png")
+	Graphics.Char.lawrance_2 = love.graphics.newImage("/images/Char/lawrance_2.png")
+	-- load christina faces
+	Graphics.Char.christina_1 = love.graphics.newImage("/images/Char/christina_1.png")
+	Graphics.Char.christina_2 = love.graphics.newImage("/images/Char/christina_2.png")
+	Graphics.Char.christina_3 = love.graphics.newImage("/images/Char/christina_3.png")
+	Graphics.Char.christina_4 = love.graphics.newImage("/images/Char/christina_4.png")
+	Graphics.Char.christina_5 = love.graphics.newImage("/images/Char/christina_5.png")
+	Graphics.Char.christina_6 = love.graphics.newImage("/images/Char/christina_6.png")
 	
 	-- load Classroom graphics
 	Graphics.Classroom = {}

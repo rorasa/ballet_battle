@@ -2,7 +2,7 @@
 Ballet-battle — Story resources
 
 Version: 0.0.1
-Last update: 24.06.14
+Last update: 26.06.14
 Programmer: Wattanit Hotrakool (@rorasa)
             CannonLight Games
 -----------------------------------------------------------
@@ -30,6 +30,18 @@ function loadPage(pageNumber)
 		Page = page9()
 	elseif pageNumber == 10 then
 		Page = page10()
+	elseif pageNumber == 11 then
+		Page = page11()
+	elseif pageNumber == 12 then
+		Page = page12()
+	elseif pageNumber == 13 then
+		Page = page13()
+	elseif pageNumber == 14 then
+		Page = page14()
+	elseif pageNumber == 15 then
+		Page = page15()
+	elseif pageNumber == 16 then
+		Page = page16()
 	end
 	return Page
 end
@@ -288,7 +300,7 @@ function page9()
 		{"character","none"},
 		{"say",Game_Params.PlayerName,"Months passed by while I practice my ballet everyday."},
 		{"say",Game_Params.PlayerName,"Everything was looking good."},
-		{"say",Game_Params.PlayerName,"I thought I might be satisfied the life as it was."},
+		{"say",Game_Params.PlayerName,"I thought I might be satisfied with the life as it was."},
 		
 		{"scene","mel_school_inside"},
 		{"character","mel_1"},
@@ -311,7 +323,7 @@ function page9()
 		{"say",Game_Params.PlayerName,"( I'll get a chance to learn from that Christina!? I must take this.)"},
 		{"say",Game_Params.PlayerName,"I'll do my best. For our school!"},
 		
-		{"scene","black_screen"},
+		{"scene","christina_school_outside"},
 		{"character","clara_2"},
 		{"say",Game_Params.PlayerName,"So this is the Christina's Ballet School?"},
 		{"say",Game_Params.PlayerName,"It's so beautiful."},
@@ -324,17 +336,18 @@ function page9()
 		{"say","Mel","If you can win it today, you can be its member."},
 		{"say","Mel","Let's get going then."},
 		
-		{"scene","black_screen"},
-		{"character","none"},
-		{"say","Lawrence","Welcome to the Christina School of Dance and Ballet."},
-		{"say","Lawrence","We're all here today to witness the greatest young talent from your area."},
-		{"say","Lawrence","The competition is very straightforward. Each of you will be called out in turn."},
-		{"say","Lawrence","Dance for all of us to see, impress our judges,..."},
-		{"say","Lawrence","and your place in our school is guaranteed."},
-		{"say","Lawrence","All of you do your best!"},
+		{"scene","christina_school_inside"},
+		{"character","lawrance_1"},
+		{"say","Lawrance","Welcome to the Christina School of Dance and Ballet."},
+		{"say","Lawrance","My name is Lawrance"},		
+		{"say","Lawrance","We're all here today to witness the greatest young talent from your area."},
+		{"say","Lawrance","The competition is very straightforward. Each of you will be called out in turn."},
+		{"say","Lawrance","Dance for all of us to see, impress our judges,..."},
+		{"say","Lawrance","and your place in our school is guaranteed."},
+		{"say","Lawrance","All of you do your best!"},
 		{"character","clara_3"},
 		{"say",Game_Params.PlayerName,"I wonder if I could win this. Everyone looks great."},
-		{"say","Lawrence","Next, from Mel's School of Ballet..."},
+		{"say","Lawrance","Next, from Mel's School of Ballet, "..Game_Params.PlayerName.."."},
 		{"character","clara_4"},
 		{"say",Game_Params.PlayerName,"It's my turn now! Mel, I'll do my best."},
 		--{"dance", 7}
@@ -346,6 +359,309 @@ end
 function page10()
 	Page = {}
 	Page.order = {
+		{"scene","christina_school_outside"},
+		{"character","none"},
+		{"say",Game_Params.PlayerName,"I still couldn't believe it was real."},
+		{"say",Game_Params.PlayerName,"That day when they announced the winner."},
+		{"scene","black_screen"},
+		{"say","Lawrance","And the winner of the region's competition is..."},
+		{"say","Lawrance","The representative from Mel's School of Ballet..."},
+		{"say","Lawrance","Miss "..Game_Params.PlayerName.."!"},
+		{"scene","christina_school_outside"},
+		{"say",Game_Params.PlayerName,"And here I am, "},
+		{"say",Game_Params.PlayerName,"on my first day as a student of the famous Christina's Ballet School."},
+		
+		{"scene","christina_school_inside"},
+		{"character","clara_4"},
+		{"say",Game_Params.PlayerName,"This place has so many students."},
+		{"say",Game_Params.PlayerName,"I would never be able to enroll and pay for myself without this program."},
+		{"say",Game_Params.PlayerName,"Hey, isn't that."},
+		{"character","christina_3"},
+		{"say","Christina","Welcome everyone."},
+		{"say","Christina","Each of you are the best in your area, whom I hope to be the future of our profession."},
+		{"say","Christina","Which is why I started this program, "},
+		{"say","Christina","to gather all young talents to this place to learn together."},
+		{"say","Christina","Now as we are fellow ballet dancers, "},
+		{"say","Christina","there should be nothing better than to dance together to know each other."},
+		{"character","christina_4"},
+		{"say","Christina","Let it begins."},
+		--{"dance", 8}
+		{"goto",11}
+	}
+	return Page
+end
+
+function page11()
+	Page = {}
+	Page.order = {
+		{"scene","christina_school_inside"},
+		{"character","christina_4"},
+		{"say","Christina","That's good."},
+		{"say","Christina","Where are you from?"},
+		{"character","clara_4"},
+		{"say",Game_Params.PlayerName,"I come from Mel's Ballet School."},
+		{"character","christina_3"},
+		{"say","Christina","Mel? I know her."},
+		{"say","Christina","It's a long time ago though, before I became a star."},
+		{"character","clara_4"},
+		{"say",Game_Params.PlayerName,"I can't believe I'm really talking to you, Christina."},
+		{"say",Game_Params.PlayerName,"I'm your big fan."},
+		{"say",Game_Params.PlayerName,"I'm always looking forward to you."},
+		{"character","christina_3"},
+		{"say","Christina","Oh, thank you."},
+		{"character","clara_4"},
+		{"say",Game_Params.PlayerName,"I started ballet since I saw your performance in the Red Hall."},
+		{"character","christina_3"},
+		{"say","Christina","What? That's must be very recently."},
+		{"say","Christina","Since when did you start your ballet?"},
+		{"character","clara_4"},
+		{"say",Game_Params.PlayerName,"Just few months back."},
+		{"say",Game_Params.PlayerName,"I first started off as a self-taught dancer until Mel met me."},
+		{"character","christina_3"},
+		{"say","Christina","You cann't be serious? There is no way such a thing could happen."},
+		{"say","Christina","Why'd you lied to me?"},
+		{"character","clara_3"},
+		{"say",Game_Params.PlayerName,"What?"},
+		{"character","christina_3"},
+		{"say","Christina","Are you trying to make fun of me or something?"},
+		{"say","Christina","Even I spent 10 years in practicing and learning before I reached here."},
+		{"say","Christina","There is no way you can dance like that in few months!"},
+		{"character","clara_3"},
+		{"say",Game_Params.PlayerName,"(What's wrong with her?)"},
+		{"goto",13}
+	}
+	return Page
+end
+
+function page12()
+	Page = {}
+	Page.order = {
+	}
+	return Page
+end
+
+function page13()
+	Page = {}
+	Page.order = {
+		{"scene","christina_school_outside"},
+		{"character","none"},
+		{"say",Game_Params.PlayerName,"3 months passed."},
+		{"say",Game_Params.PlayerName,"Christina never spoke with me again after that day."},
+		{"scene","christina_school_inside"},
+		{"character","lawrance_1"},
+		{"say","Lawrance","Good evening, ladies and gentlemen!"},
+		{"say","Lawrance","Tonight is the end of our young talents' 3 months experience..."},
+		{"say","Lawrance","as guest students here at Christina's School of Dance and Ballet."},
+		{"say","Lawrance","The show tonight will be the same as that 3 months ago."},
+		{"say","Lawrance","Each of them will perform their solo to impress our judges."},
+		{"say","Lawrance","Those who are qualified will be enrolled as full students here,"},
+		{"say","Lawrance","with our sponsorship of course."},
+		{"say","Lawrance","Those who are not will bring back their wonderful experience with us to their home."},
+		{"say","Lawrance","So without further ado, ladies and gentlemen, enjoy the show."},
+		
+		{"scene","christina_school_outside"},
+		{"character","mel_2"},
+		{"say","Mel","Hi, are you ready for today?"},
+		{"character","clara_2"},
+		{"say",Game_Params.PlayerName,"Mel! You come to watch me?"},
+		{"character","mel_2"},
+		{"say","Mel","Of course, you are my \"special squad\", aren't you?"},
+		{"character","clara_2"},
+		{"say",Game_Params.PlayerName,"I'm going to do my best as usual, Mel."},
+		{"say",Game_Params.PlayerName,"I feel like I can do just anything today."},
+		{"character","mel_2"},
+		{"say","Mel","That's a good spirit."},
+		{"say","Mel","Good luck then."},
+		{"character","clara_1"},
+		{"say",Game_Params.PlayerName,"Thank you, Mel."},
+		
+		{"scene","christina_school_inside"},
+		{"character","lawrance_1"},
+		{"say","Lawrance","Please welcome the next young talent originally from Mel's School of Ballet,"},
+		{"say","Lawrance","Miss "..Game_Params.PlayerName.."!"},
+		--{"dance", 9}
+		{"goto",14}
+	}
+	return Page
+end
+
+function page14()
+	Page = {}
+	Page.order = {
+		{"scene","black_screen"},
+		{"character","none"},
+		{"say",Game_Params.PlayerName,"The end of the last 3 months was a dream."},
+		{"say",Game_Params.PlayerName,"It was as unbelievable as the time I won."},
+		{"say","Lawrance","Miss "..Game_Params.PlayerName..", you pass!"},
+		{"say","Lawrance","Congratula..."},
+		{"say","Christina","No, you don't."},
+		{"say","Christina","I'm so sorry,"},
+		{"say","Christina","but our school is here for those who wish put their hard works to fruition."},
+		{"say","Christina","It's not a place for someone who lies to people..."},
+		{"say","Christina","that she can do what takes others years to do in just few months."},
+		{"say",Game_Params.PlayerName,"She truly believed that I was a fraud."},
+		{"say",Game_Params.PlayerName,"And I was sent back to Mel's school."},
+		
+		{"scene","mel_school_inside"},
+		{"character","mel_1"},
+		{"say","Mel","Don't be so upset okay?"},
+		{"say","Mel","It was a good experience nonetheless."},
+		{"character","clara_3"},
+		{"say",Game_Params.PlayerName,"I was so shock."},
+		{"say",Game_Params.PlayerName,"She just can't accept that I did all this in less than a year."},
+		{"character","mel_1"},
+		{"say","Mel","Well, it is true that most people take 10s years to do what you do."},
+		{"say","Mel","It's truly hard to except it though."},
+		{"character","clara_3"},
+		{"say",Game_Params.PlayerName,"And I was looking forward to her so much."},
+		{"say",Game_Params.PlayerName,"I wish I could prove it to her that I really can do it."},
+		{"character","mel_1"},
+		{"say","Mel","You serious about it?"},
+		{"character","clara_3"},
+		{"say",Game_Params.PlayerName,"What do you think?"},
+		{"character","mel_1"},
+		{"say","Mel","As I know you, I think you are serious."},
+		{"say","Mel","There is one place you can prove it to her."},
+		{"character","clara_3"},
+		{"say",Game_Params.PlayerName,"Where?"},
+		{"character","mel_1"},
+		{"say","Mel","The Red Hall Competition."},
+		{"say","Mel","The place where Christina won it last year."},
+		{"character","clara_3"},
+		{"say",Game_Params.PlayerName,"You can send me to The Red Hall?"},
+		{"character","mel_1"},
+		{"say","Mel","Yes, I can."},
+		{"say","Mel","I can apply for you in our school's name."},
+		{"say","Mel","It's a big gamble though. This is the biggest event in the country."},
+		{"say","Mel","If you failed, it'd be a guaranteed route out of the business for both you and me."},
+		{"character","clara_3"},
+		{"say",Game_Params.PlayerName,"You don't have to risk it for me."},
+		{"character","mel_1"},
+		{"say","Mel","But this competition is very hard,"},
+		{"say","Mel","and Christina herself will also be competing."},
+		{"say","Mel","If you can win it, win against Christina and all odds, you will be the best."},
+		{"say","Mel","Regardless of your training years, no one will criticise you for that anymore."},
+		{"character","clara_3"},
+		{"say",Game_Params.PlayerName,"Are you sure about this?"},
+		{"character","mel_1"},
+		{"say","Mel","How many times did you ask me that question?"},
+		{"say","Mel","Of course I am! Let's do it!"},
+		{"goto",15}
+	}
+	return Page
+end
+
+function page15()
+	Page = {}
+	Page.order = {
+		{"scene","red_hall_inside"},
+		{"character","mel_2"},
+		{"say","Mel","Alright, here we are."},
+		{"say","Mel","Remember, do your best!"},
+		{"character","christina_6"},
+		{"say","Christina","What? Are you going to join this competition!?"},
+		{"say","Christina","You can't be serious, right?!"},
+		{"character","mel_2"},
+		{"say","Mel","Well, we are."},
+		{"character","clara_6"},
+		{"say",Game_Params.PlayerName,"I'll be a better angel than you, Christina."},
+		{"say",Game_Params.PlayerName,"See you on the stage."},
+		{"character","christina_5"},
+		{"say","Christina","There's no way you can win, I tell you."},
+		{"say","Christina","As your former teacher, I recommend you to just sit back and enjoy the show."},
+		{"character","mel_2"},
+		{"say","Mel","As the first and the current teacher, I say you give it you all and win it."},
+		{"character","christina_6"},
+		{"say","Christina","Alright, don't say I didn't warn you this."},
+		
+		{"scene","red_hall_inside"},
+		{"character","lawrance_2"},
+		{"say","Lawrance","Ladies and gentlemen, welcome to the Red Hall Ballet Competition."},
+		{"say","Lawrance","First and foremost,"},
+		{"say","Lawrance","I believe that everyone wish to see our brightest star tonight."},
+		{"say","Lawrance","But there are many other shining stars as well,"},
+		{"say","Lawrance","please welcome a newborn star from Mel's School of Ballet, Miss "..Game_Params.PlayerName},
+		{"character","clara_5"},
+		{"say",Game_Params.PlayerName,"Here I go again."},
+		--{"dance", 10}
+		
+		{"scene","red_hall_inside"},
+		{"character","clara_6"},
+		{"say",Game_Params.PlayerName,"(I think I did a good job, didn't I?)"},
+		{"character","mel_2"},
+		{"say","Mel","(You did great, keep it up.)"},
+		{"character","lawrance_2"},
+		{"say","Lawrance","And finally the brightest star tonight,"},
+		{"say","Lawrance","the last year's winner, your beloved Christina!"},
+		
+		{"scene","christinas_dance"},
+		{"character","none"},
+		{"say",Game_Params.PlayerName,"What she did was nothing short of her fame."},
+		{"say",Game_Params.PlayerName,"Regardless what kind of a person she was,"},
+		{"say",Game_Params.PlayerName,"her dance was still like an angel's."},
+		{"say",Game_Params.PlayerName,"I thought I was done for when..."},
+		
+		{"scene","red_hall_inside"},
+		{"character","lawrance_2"},
+		{"say","Lawrance","Unbelievable, our most honour judges cannot decide who to win."},
+		{"say","Lawrance","It seems that there are two stars tonight shining upon the other."},
+		{"say","Lawrance","We would like them both to perform together for one final dance. "},
+		{"character","clara_5"},
+		{"say",Game_Params.PlayerName,"Dance with Christina?"},
+		
+		{"scene","christinas_dance"},
+		--{"dance", 11}
+		{"goto",16}
+	}
+	return Page
+end
+
+function page16()
+	Page = {}
+	Page.order = {
+		{"scene","black_screen"},
+		{"character","none"},
+		{"say",Game_Params.PlayerName,"It was so surreal."},
+		{"say",Game_Params.PlayerName,"2 angels danced around each other, with thousands of eyes watching us."},
+		{"say",Game_Params.PlayerName,"And when it ended..."},
+		
+		{"scene","red_hall_inside"},
+		{"character","lawrance_2"},
+		{"say","Lawrance","And this year's winner is ..."},
+		{"say","Lawrance","Miss "..Game_Params.PlayerName.."!"},
+		{"character","clara_6"},
+		{"say",Game_Params.PlayerName,"ME!!?"},
+		{"character","christina_5"},
+		{"say","Christina","That was a great performance."},
+		{"say","Christina","You made it. Congratulations."},
+		{"character","clara_6"},
+		{"say",Game_Params.PlayerName,"(Me? The winner? I just can't believe it.)"},
+		{"say",Game_Params.PlayerName,"Thank you Christina, for everything."},
+		{"character","lawrance_2"},
+		{"say","Lawrance","Big round of applause for our winner tonight!"},
+		
+		{"scene","black_screen"},
+		{"character","none"},
+		{"say",Game_Params.PlayerName,"And so my dream came true."},
+		{"say",Game_Params.PlayerName,"What happened next?"},
+		{"say",Game_Params.PlayerName,"Well, I'm telling this to you."},
+		{"scene","mel_school_outside"},
+		{"say",Game_Params.PlayerName,"I'm working with Mel now."},
+		{"say",Game_Params.PlayerName,"The school's got bigger than ever since my victory."},
+		{"scene","christina_school_inside"},
+		{"say",Game_Params.PlayerName,"Christina's school is still the biggest,"},
+		{"say",Game_Params.PlayerName,"and she is still as wonderful as ever"},
+		{"scene","red_hall_inside"},
+		{"say",Game_Params.PlayerName,"And I'm telling my story to you..."},
+		{"say",Game_Params.PlayerName,"to let you know that sometimes, your talent is just right there..."},
+		{"say",Game_Params.PlayerName,"waiting for you to pick them up."},
+		{"say",Game_Params.PlayerName,"All you need is to do it."},
+		{"say","Mel","Hurry up! The class is starting!"},
+		{"scene","mel_school_inside"},
+		{"character","clara_6"},
+		{"say",Game_Params.PlayerName,"I've to go now."},
+		{"say",Game_Params.PlayerName,"Let's dance together!"},
+		{"end"}
 	}
 	return Page
 end

@@ -2,7 +2,7 @@
 Ballet-battle
 
 Version: 0.0.1
-Last update: 21.06.14
+Last update: 26.06.14
 Programmer: Wattanit Hotrakool (@rorasa)
             CannonLight Games
 -----------------------------------------------------------
@@ -52,5 +52,5 @@ function gameInit()
 	Game_Params.StarSpeed = 8
 	Game_Params.StarHitArea = 10
 	
-	Game_Params.currentPage = 9
+	Game_Params.currentPage = 1
 end
