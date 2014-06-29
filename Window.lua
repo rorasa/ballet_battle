@@ -25,7 +25,37 @@ function drawTitleWindow()
 	
 	-- draw "Press SPACE"
 	love.graphics.setFont(Graphics.Font.main);
-	love.graphics.print("Press SPACE to begin", 310, 2*Window_Params.height/3)
+	love.graphics.print("Press SPACE to select", 310, 2*Window_Params.height/3)
+	
+	-- draw New Game menu
+	if Window_Params.titleMenu == 1 then
+		alpha = 255
+	else
+		alpha = 150
+	end
+	love.graphics.setColor(0,20,80,alpha)
+	love.graphics.rectangle("fill", 300, 430, 200, 40 )
+	love.graphics.setColor(150,100,0,255)
+	love.graphics.setLineWidth( 2 )
+	love.graphics.rectangle("line", 300, 430, 200, 40 )
+	love.graphics.setColor(255,255,255,alpha)
+	love.graphics.print("New Game", 355, 435 )
+	
+	-- draw Continue menu
+	if Window_Params.titleMenu == 2 then
+		alpha = 255
+	else
+		alpha = 150
+	end
+	love.graphics.setColor(0,20,80,alpha)
+	love.graphics.rectangle("fill", 300, 490, 200, 40 )
+	love.graphics.setColor(150,100,0,255)
+	love.graphics.setLineWidth( 2 )
+	love.graphics.rectangle("line", 300, 490, 200, 40 )
+	love.graphics.setColor(255,255,255,alpha)
+	love.graphics.print("Continue", 365, 495 )
+	
+	
 end
 
 function drawStoryWindow()
@@ -55,16 +85,19 @@ end
 function drawDanceWindow()
 	-- draw background
 	love.graphics.setColor(255,255,255,255)
-	love.graphics.draw(Graphics.Classroom.bg)
-	--love.graphics.rectangle("fill", 0, 0, Window_Params.width, Window_Params.height )
+	love.graphics.draw(Graphics.currentBG)
 	
-	-- draw Performance bar
-	love.graphics.setColor(0,50,255,255)
-	love.graphics.rectangle("fill", 401, 0, 400, 25)
+	-- draw Top bar
+	love.graphics.setColor(19,42,117,200)
+	love.graphics.rectangle("fill", 0, 0, 800, 25)
+	love.graphics.setColor(255,255,255,255)
+	love.graphics.print("Performance", 292, 0)
+	love.graphics.print("Score", 10, 0)
+	love.graphics.print(Game_Params.score, 100, 0)
 	if Game_Params.performance >80 then
 		love.graphics.setColor(51,204,51,255)
 	elseif Game_Params.performance > 30 then
-		love.graphics.setColor(102,204,255,255)
+		love.graphics.setColor(226,185,71,255)
 	else
 		love.graphics.setColor(204,0,0,255)
 	end
@@ -72,43 +105,86 @@ function drawDanceWindow()
 	
 	
 	-- draw Stage background
-	love.graphics.setColor(0,50,255,255)
+	love.graphics.setColor(19,42,117,255)
 	love.graphics.rectangle("fill", 20, Window_Params.height-180, Window_Params.width-40, 160 )
+	love.graphics.setColor(102,133,221,200)
+	love.graphics.print("A", 40, Window_Params.height-172)
+	love.graphics.print("B", 40, Window_Params.height-132)
+	love.graphics.print("C", 40, Window_Params.height-92)
+	love.graphics.print("D", 40, Window_Params.height-52)
 	
 	-- draw Stars
-	love.graphics.setColor(255,0,0,255)
+	love.graphics.setColor(255,255,255,255)
 	for i,v in ipairs(Game_Params.Astars) do
-		love.graphics.circle("fill", v.x, v.y, 10, 50)
+		love.graphics.draw(Graphics.Star, v.x-12.5, v.y-12.5)
 	end
 	for i,v in ipairs(Game_Params.Bstars) do
-		love.graphics.circle("fill", v.x, v.y, 10, 50)
+		love.graphics.draw(Graphics.Star, v.x-12.5, v.y-12.5)
 	end
 	for i,v in ipairs(Game_Params.Cstars) do
-		love.graphics.circle("fill", v.x, v.y, 10, 50)
+		love.graphics.draw(Graphics.Star, v.x-12.5, v.y-12.5)
 	end
 	for i,v in ipairs(Game_Params.Dstars) do
-		love.graphics.circle("fill", v.x, v.y, 10, 50)
+		love.graphics.draw(Graphics.Star, v.x-12.5, v.y-12.5)
 	end
 	
 	-- draw Stage edges
-	love.graphics.setColor(255,255,255,255)
+	love.graphics.setColor(229,200,81,255)
 	love.graphics.setLineWidth( 4 )
 	love.graphics.rectangle("line", 20, Window_Params.height-180, Window_Params.width-40, 160 )
-	love.graphics.setColor(255,255,255,175)
+	love.graphics.setColor(229,200,81,175)
 	love.graphics.setLineWidth( 2 )
 	love.graphics.line(20, Window_Params.height-140, Window_Params.width-20, Window_Params.height-140)
 	love.graphics.line(20, Window_Params.height-100, Window_Params.width-20, Window_Params.height-100)
 	love.graphics.line(20, Window_Params.height-60, Window_Params.width-20, Window_Params.height-60)
 	
+	love.graphics.setColor(255,255,255,255)
+	love.graphics.setLineWidth( 3 )
 	love.graphics.line(Window_Params.targetLine, Window_Params.height-180, Window_Params.targetLine, Window_Params.height-20)
 	
+	-- draw hit-miss rings
+	if Game_Params.HitMiss.Ahit then
+		love.graphics.setColor(51,204,51,255)
+		love.graphics.circle("line", Window_Params.targetLine, Window_Params.height-160, 15, 50)
+	end
+	if Game_Params.HitMiss.Amiss then
+		love.graphics.setColor(211,0,0,255)
+		love.graphics.circle("line", Window_Params.targetLine, Window_Params.height-160, 15, 50)
+	end
+	if Game_Params.HitMiss.Bhit then
+		love.graphics.setColor(51,204,51,255)
+		love.graphics.circle("line", Window_Params.targetLine, Window_Params.height-120, 15, 50)
+	end
+	if Game_Params.HitMiss.Bmiss then
+		love.graphics.setColor(211,0,0,255)
+		love.graphics.circle("line", Window_Params.targetLine, Window_Params.height-120, 15, 50)
+	end
+	if Game_Params.HitMiss.Chit then
+		love.graphics.setColor(51,204,51,255)
+		love.graphics.circle("line", Window_Params.targetLine, Window_Params.height-80, 15, 50)
+	end
+	if Game_Params.HitMiss.Cmiss then
+		love.graphics.setColor(211,0,0,255)
+		love.graphics.circle("line", Window_Params.targetLine, Window_Params.height-80, 15, 50)
+	end
+	if Game_Params.HitMiss.Dhit then
+		love.graphics.setColor(51,204,51,255)
+		love.graphics.circle("line", Window_Params.targetLine, Window_Params.height-40, 15, 50)
+	end
+	if Game_Params.HitMiss.Dmiss then
+		love.graphics.setColor(211,0,0,255)
+		love.graphics.circle("line", Window_Params.targetLine, Window_Params.height-40, 15, 50)
+	end
+	
 	-- draw star concealers
-	love.graphics.setColor(150,200,255,255)
-	love.graphics.rectangle("fill", 0,  Window_Params.height-180, 18, 160 )
-	love.graphics.rectangle("fill", Window_Params.width-18,  Window_Params.height-180, 18, 160 )
+	love.graphics.setColor(19,42,117,255)
+	love.graphics.rectangle("fill", 0,  Window_Params.height-182, 18, 164 )
+	love.graphics.rectangle("fill", Window_Params.width-18,  Window_Params.height-182, 18, 164 )
 end
 
 function loadGraphics()
+	
+	Graphics = {}
 	
 	-- load custom font
 	Graphics.Font = {}
@@ -171,8 +247,7 @@ function loadGraphics()
 	Graphics.Char.christina_6 = love.graphics.newImage("/images/Char/christina_6.png")
 	
 	-- load Classroom graphics
-	Graphics.Classroom = {}
-	Graphics.Classroom.bg = love.graphics.newImage("/images/BG/mel_school_inside.png")
+	Graphics.Star = love.graphics.newImage("/images/star.png")
 	
 	Graphics.currentChar = Graphics.Char.none
 

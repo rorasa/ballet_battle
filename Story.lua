@@ -49,11 +49,15 @@ end
 function page1()
 	Page = {}
 	Page.order = {
+		{"song","opening"},
 		{"scene","black_screen"},
 		{"say",Game_Params.PlayerName,"I am a girl."},
 		{"say",Game_Params.PlayerName,"I was your ordinary girl, those you can find on a street."},
 		{"say",Game_Params.PlayerName,"I was a girl with no passion nor goals in my life."},
 		{"say",Game_Params.PlayerName,"Until one day..."},
+		{"scene","mel_school_outside"},
+		{"dance",2},
+		{"song","opening"},
 		{"scene","christinas_dance"},
 		{"say",Game_Params.PlayerName,"I browsed on my television, looking for something to watch."},
 		{"say",Game_Params.PlayerName,"And then I saw her."},
@@ -73,6 +77,8 @@ end
 function page2()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","jesu"},
 		{"scene","park"},
 		{"character","clara_1"},
 		{"say",Game_Params.PlayerName,"I really want to do ballet."},
@@ -109,7 +115,7 @@ function page2()
 		{"say",Game_Params.PlayerName,"What an encouraging guide it is!"},
 		{"character","clara_2"},
 		{"say",Game_Params.PlayerName,"Anyway let's try dancing!"},
-		--{"dance", 1}
+		--{"dance", 1},
 		{"goto",3}
 	}
 	return Page
@@ -118,12 +124,15 @@ end
 function page3()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","jesu"},
 		{"scene","park"},
 		{"character","clara_1"},
 		{"say",Game_Params.PlayerName,"Whoosh"},
 		{"say",Game_Params.PlayerName,"That's a lot HARDER than I imagined!"},
 		{"say",Game_Params.PlayerName,"I hope I could get better at this after several practices, though."},
 		--{"dance", 2}
+		{"song","jesu"},
 		{"scene","black_screen"},
 		{"character","none"},
 		{"say"," ","Few months later"},
@@ -167,6 +176,7 @@ function page3()
 		{"character","clara_2"},
 		{"say",Game_Params.PlayerName,"Of course!"},
 		--{"dance", 3}
+		{"song","jesu"},
 		{"character","mel_1"},
 		{"say","Mel","Maybe I can put you in a special program."},
 		{"say","Mel","It is a \"special squad\" specially trained for competition."},
@@ -190,6 +200,8 @@ end
 function page4()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","minuet"},
 		{"scene","mel_school_outside"},
 		{"character","none"},
 		{"say",Game_Params.PlayerName,"So I'd been to Mel's school."},
@@ -226,6 +238,8 @@ end
 function page5()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","minuet"},
 		{"scene","mel_school_inside"},
 		{"character","mel_1"},
 		{"say","Mel","That's great!"},
@@ -254,6 +268,8 @@ end
 function page7()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","minuet"},
 		{"scene","mel_school_inside"},
 		{"character","mel_1"},
 		{"say","Mel","You are really something special."},
@@ -284,6 +300,8 @@ end
 function page9()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","minuet"},
 		{"scene","mel_school_inside"},
 		{"character","mel_1"},
 		{"say","Mel","How do you feel?"},
@@ -323,6 +341,7 @@ function page9()
 		{"say",Game_Params.PlayerName,"( I'll get a chance to learn from that Christina!? I must take this.)"},
 		{"say",Game_Params.PlayerName,"I'll do my best. For our school!"},
 		
+		{"song","ashton"},
 		{"scene","christina_school_outside"},
 		{"character","clara_2"},
 		{"say",Game_Params.PlayerName,"So this is the Christina's Ballet School?"},
@@ -359,6 +378,8 @@ end
 function page10()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","ashton"},
 		{"scene","christina_school_outside"},
 		{"character","none"},
 		{"say",Game_Params.PlayerName,"I still couldn't believe it was real."},
@@ -394,6 +415,8 @@ end
 function page11()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","ashton"},
 		{"scene","christina_school_inside"},
 		{"character","christina_4"},
 		{"say","Christina","That's good."},
@@ -443,6 +466,8 @@ end
 function page13()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","ashton"},
 		{"scene","christina_school_outside"},
 		{"character","none"},
 		{"say",Game_Params.PlayerName,"3 months passed."},
@@ -488,6 +513,8 @@ end
 function page14()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","none"},
 		{"scene","black_screen"},
 		{"character","none"},
 		{"say",Game_Params.PlayerName,"The end of the last 3 months was a dream."},
@@ -502,6 +529,7 @@ function page14()
 		{"say",Game_Params.PlayerName,"She truly believed that I was a fraud."},
 		{"say",Game_Params.PlayerName,"And I was sent back to Mel's school."},
 		
+		{"song","minuet"},
 		{"scene","mel_school_inside"},
 		{"character","mel_1"},
 		{"say","Mel","Don't be so upset okay?"},
@@ -554,6 +582,8 @@ end
 function page15()
 	Page = {}
 	Page.order = {
+		{"save"},
+		{"song","adventure"},
 		{"scene","red_hall_inside"},
 		{"character","mel_2"},
 		{"say","Mel","Alright, here we are."},
@@ -585,6 +615,7 @@ function page15()
 		{"say",Game_Params.PlayerName,"Here I go again."},
 		--{"dance", 10}
 		
+		{"song","adventure"},
 		{"scene","red_hall_inside"},
 		{"character","clara_6"},
 		{"say",Game_Params.PlayerName,"(I think I did a good job, didn't I?)"},
@@ -619,12 +650,14 @@ end
 function page16()
 	Page = {}
 	Page.order = {
+		{"song","none"},
 		{"scene","black_screen"},
 		{"character","none"},
 		{"say",Game_Params.PlayerName,"It was so surreal."},
 		{"say",Game_Params.PlayerName,"2 angels danced around each other, with thousands of eyes watching us."},
 		{"say",Game_Params.PlayerName,"And when it ended..."},
 		
+		{"song","none"},
 		{"scene","red_hall_inside"},
 		{"character","lawrance_2"},
 		{"say","Lawrance","And this year's winner is ..."},
@@ -640,6 +673,7 @@ function page16()
 		{"character","lawrance_2"},
 		{"say","Lawrance","Big round of applause for our winner tonight!"},
 		
+		{"song","minuet"},
 		{"scene","black_screen"},
 		{"character","none"},
 		{"say",Game_Params.PlayerName,"And so my dream came true."},

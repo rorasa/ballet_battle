@@ -22,17 +22,32 @@ function GameManager(action)
 end
 
 function TitleManager(action)
-	if action[1] == "mouse" then
+	--[[if action[1] == "mouse" then
 		Game_Params.Scene = 1
 		StoryManager({"start"})
 		--Game_Params.Scene = 2
-		--DanceManager({"start"})
-	elseif action[1] == "key" then
+		--DanceManager({"start"})]]
+		
+	if action[1] == "key" then
 		if action[2] == " " then
-			Game_Params.Scene = 1
-			StoryManager({"start"})
+		    love.audio.play(Audio.Sfx.selection)
+			if Window_Params.titleMenu == 1 then
+				Game_Params.Scene = 1
+				StoryManager({"start"})
+			elseif Window_Params.titleMenu == 2 then
+				loadGame()
+				updatePage()
+			end
+			
 			--Game_Params.Scene = 2
 			--DanceManager({"start"})
+		elseif action[2] == "down" or action[2] == "up" then
+			love.audio.play(Audio.Sfx.selection)
+			if Window_Params.titleMenu == 1 then
+				Window_Params.titleMenu = 2
+			else
+				Window_Params.titleMenu = 1
+			end
 		end
 	end
 end
@@ -40,7 +55,18 @@ end
 function StoryManager(action)
 	if action[1] == "key" then
 		if action[2] == " " then
+			love.audio.play(Audio.Sfx.text)
 			updatePage()
+			if Game_Params.gotoDance then
+				print("Go to dance")
+				DanceManager({"start",order[2]})
+				Game_Params.Scene = 2
+			end
+		elseif action[2] == "escape" then
+			playSong("none")
+			Game_Params.Scene = 0
+			love.load()
+			return
 		end
 	elseif action[1] == "update" then
 		Window_Params.textDelay = Window_Params.textDelay + action[2]
@@ -67,8 +93,8 @@ function newPage()
 			Game_Params.Page.text = order[3]
 			return
 		elseif order[1] == "dance" then
-			Game_Params.Scene = 2
-			DanceManager({"start"})
+			Game_Params.gotoDance = true
+			return
 		elseif order[1] == "scene" then
 			changeBG(order[2])
 		elseif order[1] == "character" then
@@ -76,6 +102,8 @@ function newPage()
 		elseif order[1] == "goto" then
 			Game_Params.currentPage = order[2]
 			Game_Params.Page = loadPage(order[2])
+		elseif order[1] == "save" then
+			saveGame()
 		elseif order[1] == "end" then
 			Game_Params.Scene = 0
 			love.load()
@@ -87,6 +115,7 @@ end
 function updatePage()
 	Window_Params.textDelay = 0
 	Window_Params.textPos = 0
+	
 	while #Game_Params.Page.order > 0 do
 		order = table.remove(Game_Params.Page.order,1)
 		if order[1] == "say" then
@@ -94,22 +123,28 @@ function updatePage()
 			Game_Params.Page.text = order[3]
 			return
 		elseif order[1] == "dance" then
-			Game_Params.Scene = 2
-			DanceManager({"start"})
+			Game_Params.gotoDance = true
+			return
 		elseif order[1] == "scene" then
 			changeBG(order[2])
 		elseif order[1] == "character" then
 			changeChar(order[2])
 		elseif order[1] == "goto" then
+			print("New page")
 			Game_Params.currentPage = order[2]
 			Game_Params.Page = loadPage(order[2])
+		elseif order[1] == "save" then
+			print("Save here")
+			saveGame()
+		elseif order[1] == "song" then
+			playSong(order[2])
 		elseif order[1] == "end" then
 			Game_Params.Scene = 0
 			love.load()
 			return
 		end
 	end
-	newPage()
+	--newPage()
 end
 
 function changeBG(BGName)
@@ -178,15 +213,44 @@ function DanceManager(action)
 			return
 		end
 	
-		if action[2] == "z" then
-			star = table.remove(Game_Params.Astars,1)
-		elseif action[2] == "x" then
-			star = table.remove(Game_Params.Bstars,1)
-		elseif action[2] == "c" then
-			star = table.remove(Game_Params.Cstars,1)
-		elseif action[2] == "v" then
-			star = table.remove(Game_Params.Dstars,1)
+		if action[2] == Game_Params.Akey then
+			i = 0
+			repeat
+				i = i+1
+				if not Game_Params.Astars[i] then
+					return
+				end
+				star = Game_Params.Astars[i]
+			until star.x > Window_Params.targetLine
+		elseif action[2] == Game_Params.Bkey then
+			i = 0
+			repeat
+				i = i+1
+				if not Game_Params.Bstars[i] then
+					return
+				end
+				star = Game_Params.Bstars[i]
+			until star.x > Window_Params.targetLine
+		elseif action[2] == Game_Params.Ckey then
+			i = 0
+			repeat
+				i = i+1
+				if not Game_Params.Cstars[i] then
+					return
+				end
+				star = Game_Params.Cstars[i]
+			until star.x > Window_Params.targetLine
+		elseif action[2] == Game_Params.Dkey then
+			i = 0
+			repeat
+				i = i+1
+				if not Game_Params.Dstars[i] then
+					return
+				end
+				star = Game_Params.Dstars[i]
+			until star.x > Window_Params.targetLine
 		elseif action[2] == "escape" then
+			playSong("none")
 			Game_Params.Scene = 0
 			love.load()
 			return
@@ -199,19 +263,54 @@ function DanceManager(action)
 			starHit = math.abs(Window_Params.targetLine-star.x)
 		end
 		if starHit <= Game_Params.StarHitArea then
-			Game_Params.score = Game_Params.score + 100
+			if Game_Params.performance > 80 then
+				Game_Params.score = math.floor(Game_Params.score + 100 + (2*Game_Params.performance))
+			elseif Game_Params.performance > 30 then
+				Game_Params.score = math.floor(Game_Params.score + 100 + Game_Params.performance)
+			else
+				Game_Params.score = math.floor(Game_Params.score + 100)
+			end
 			Game_Params.performance = Game_Params.performance + (Game_Params.PerformanceStep*10)
+			hitMiss(action[2],"hit")
+			if action[2] == Game_Params.Akey then
+				table.remove(Game_Params.Astars,i)
+			elseif action[2] == Game_Params.Bkey then
+				table.remove(Game_Params.Bstars,i)
+			elseif action[2] == Game_Params.Ckey then
+				table.remove(Game_Params.Cstars,i)
+			elseif action[2] == Game_Params.Dkey then
+				table.remove(Game_Params.Dstars,i)
+			end
 		else
-			Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*20)
+			love.audio.play(Audio.Sfx.fail)
+			Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*16)
+			hitMiss(action[2],"miss")
 		end
 		if Game_Params.performance > 100 then Game_Params.performance = 100 end
 		if Game_Params.performance < 0 then Game_Params.performance = 0 end
 		
 	elseif action[1] == "update" then
 		Game_Params.time = Game_Params.time + action[2]
+		Game_Params.HitMiss.Atime = Game_Params.HitMiss.Atime + action[2]
+		Game_Params.HitMiss.Btime = Game_Params.HitMiss.Btime + action[2]
+		Game_Params.HitMiss.Ctime = Game_Params.HitMiss.Ctime + action[2]
+		Game_Params.HitMiss.Dtime = Game_Params.HitMiss.Dtime + action[2]
 		if not Game_Params.gameEnd then
 			Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*action[2])
 			if Game_Params.performance < 0 then Game_Params.performance = 0  end
+		end
+		
+		if Game_Params.HitMiss.Atime > Game_Params.HitLatency then
+			hitMiss("A", "none")
+		end
+		if Game_Params.HitMiss.Btime > Game_Params.HitLatency then
+			hitMiss("B", "none")
+		end
+		if Game_Params.HitMiss.Ctime > Game_Params.HitLatency then
+			hitMiss("C", "none")
+		end
+		if Game_Params.HitMiss.Dtime > Game_Params.HitLatency then
+			hitMiss("D", "none")
 		end
 		
 		for i,v in ipairs(Game_Params.song.stars) do
@@ -220,11 +319,17 @@ function DanceManager(action)
 					Game_Params.gameEnd = true
 					table.remove(Game_Params.song.stars,i)
 					return
-				end
-				if v[1] == "quit" then
-					Game_Params.Scene = 0
+				elseif v[1] == "quit" then
+					--Game_Params.Scene = 0
 					--table.remove(Game_Params.song.stars,i)
-					love.load()
+					--love.load()
+					Game_Params.gotoDance = false
+					Game_Params.Scene = 1
+					updatePage()
+					return
+				elseif v[1] == "start" then
+					playSong(Game_Params.song.name)
+					table.remove(Game_Params.song.stars,i)
 					return
 				end
 				star = table.remove(Game_Params.song.stars,i)
@@ -237,7 +342,7 @@ function DanceManager(action)
 			v.x = v.x - (speed*action[2])
 			if v.x < 0 then
 				table.remove(Game_Params.Astars,i)
-				Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*10)
+				Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*6)
 			else
 				Game_Params.Astars[i] = v
 			end
@@ -247,7 +352,7 @@ function DanceManager(action)
 			v.x = v.x - (speed*action[2])
 			if v.x < 0 then
 				table.remove(Game_Params.Bstars,i)
-				Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*10)
+				Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*6)
 			else
 				Game_Params.Bstars[i] = v
 			end
@@ -257,7 +362,7 @@ function DanceManager(action)
 			v.x = v.x - (speed*action[2])
 			if v.x < 0 then
 				table.remove(Game_Params.Cstars,i)
-				Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*10)
+				Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*6)
 			else
 				Game_Params.Cstars[i] = v
 			end
@@ -267,24 +372,82 @@ function DanceManager(action)
 			v.x = v.x - (speed*action[2])
 			if v.x < 0 then
 				table.remove(Game_Params.Dstars,i)
-				Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*10)
+				Game_Params.performance = Game_Params.performance - (Game_Params.PerformanceStep*6)
 			else
 				Game_Params.Dstars[i] = v
 			end
 		end
 		
-		print(Game_Params.score)
+		--print(Game_Params.score)
 				
 	elseif action[1] == "start" then
 		Game_Params.time = 0
-		Game_Params.song = loadSongHello()
+		Game_Params.song = loadSong(action[2])
 		Game_Params.Astars = {}
 		Game_Params.Bstars = {}
 		Game_Params.Cstars = {}
 		Game_Params.Dstars = {}
-		Game_Params.score = 0
+		Game_Params.HitMiss = {}
+		Game_Params.HitMiss.Ahit = false
+		Game_Params.HitMiss.Amiss = false
+		Game_Params.HitMiss.Atime = 0
+		Game_Params.HitMiss.Bhit = false
+		Game_Params.HitMiss.Bmiss = false
+		Game_Params.HitMiss.Btime = 0
+		Game_Params.HitMiss.Chit = false
+		Game_Params.HitMiss.Cmiss = false
+		Game_Params.HitMiss.Ctime = 0
+		Game_Params.HitMiss.Dhit = false
+		Game_Params.HitMiss.Dmiss = false
+		Game_Params.HitMiss.Dtime = 0
 		Game_Params.performance = 50
 		Game_Params.gameEnd = false
+		
+		playSong("none")
+	end
+end
+
+function hitMiss(step, status)
+	if step == Game_Params.Akey or step == "A" then
+		if status == "hit" then
+			Game_Params.HitMiss.Ahit = true
+		elseif status == "miss" then
+			Game_Params.HitMiss.Amiss = true
+		else
+			Game_Params.HitMiss.Ahit = false
+			Game_Params.HitMiss.Amiss = false
+		end
+		Game_Params.HitMiss.Atime = 0
+	elseif step == Game_Params.Bkey or step == "B"  then
+		if status == "hit" then
+			Game_Params.HitMiss.Bhit = true
+		elseif status == "miss" then
+			Game_Params.HitMiss.Bmiss = true
+		else
+			Game_Params.HitMiss.Bhit = false
+			Game_Params.HitMiss.Bmiss = false
+		end
+		Game_Params.HitMiss.Btime = 0
+	elseif step == Game_Params.Ckey or step == "C" then
+		if status == "hit" then
+			Game_Params.HitMiss.Chit = true
+		elseif status == "miss" then
+			Game_Params.HitMiss.Cmiss = true
+		else
+			Game_Params.HitMiss.Chit = false
+			Game_Params.HitMiss.Cmiss = false
+		end
+		Game_Params.HitMiss.Ctime = 0
+	elseif step == Game_Params.Dkey or step == "D" then
+		if status == "hit" then
+			Game_Params.HitMiss.Dhit = true
+		elseif status == "miss" then
+			Game_Params.HitMiss.Dmiss = true
+		else
+			Game_Params.HitMiss.Dhit = false
+			Game_Params.HitMiss.Dmiss = false
+		end
+		Game_Params.HitMiss.Dtime = 0
 	end
 end
 
