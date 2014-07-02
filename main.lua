@@ -1,15 +1,15 @@
 --[[
-Ballet-battle
+La Ballerina
 
-Version: 0.0.1
-Last update: 26.06.14
+Version: 0.9
+Last update: 30.06.14
 Programmer: Wattanit Hotrakool (@rorasa)
-            CannonLight Games
+            Cannon Light Games
 -----------------------------------------------------------
 LÖVE version: 0.9.0
 ]]
 
-VersionNo = '0.1.0'
+VersionNo = '0.9.0'
 
 require "Tserial"
 require "Window"
@@ -20,9 +20,9 @@ require "Song"
 require "Story"
 
 function love.load()
-	gameInit()
 	loadGraphics()
 	loadAudio()
+	gameInit()
 end
 
 function love.update(dt)
@@ -36,6 +36,12 @@ function love.draw()
 		drawStoryWindow()
 	elseif Game_Params.Scene == 2 then
 		drawDanceWindow()
+	elseif Game_Params.Scene == 3 then
+		drawResultWindow()
+	elseif Game_Params.Scene == 4 then
+		drawGameOverWindow()
+	elseif Game_Params.Scene == 5 then
+		drawCreditWindow()
 	end
 end
 
@@ -51,6 +57,7 @@ function gameInit()
 	Window_Params.titleMenu = 1
 	
 	newGame()
+	TitleManager({"start"})
 end
 
 function newGame()
@@ -59,7 +66,7 @@ function newGame()
 	Game_Params.Scene = 0
 	Game_Params.PerformanceStep = 0.5
 	Game_Params.StarSpeed = 8
-	Game_Params.StarHitArea = 20
+	Game_Params.StarHitArea = 25
 	Game_Params.HitLatency = 0.2
 	Game_Params.Akey = "z"
 	Game_Params.Bkey = "x"
@@ -78,6 +85,7 @@ function loadGame()
 	e = love.filesystem.exists("laBallerina.save")
 	if e then
 		Game_Params = Tserial.unpack(love.filesystem.read ("laBallerina.save"))
+		updatePage()
 	end
 end
 

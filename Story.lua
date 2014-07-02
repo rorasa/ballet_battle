@@ -1,10 +1,10 @@
 --[[
-Ballet-battle — Story resources
+La Ballerina — Story resources
 
-Version: 0.0.1
-Last update: 26.06.14
+Version: 0.9
+Last update: 30.06.14
 Programmer: Wattanit Hotrakool (@rorasa)
-            CannonLight Games
+            Cannon Light Games
 -----------------------------------------------------------
 LÖVE version: 0.9.0
 ]]
@@ -55,9 +55,9 @@ function page1()
 		{"say",Game_Params.PlayerName,"I was your ordinary girl, those you can find on a street."},
 		{"say",Game_Params.PlayerName,"I was a girl with no passion nor goals in my life."},
 		{"say",Game_Params.PlayerName,"Until one day..."},
-		{"scene","mel_school_outside"},
-		{"dance",2},
-		{"song","opening"},
+		--{"scene","mel_school_outside"},
+		--{"dance",10},
+		--{"song","opening"},
 		{"scene","christinas_dance"},
 		{"say",Game_Params.PlayerName,"I browsed on my television, looking for something to watch."},
 		{"say",Game_Params.PlayerName,"And then I saw her."},
@@ -88,23 +88,23 @@ function page2()
 		{"character","clara_2"},
 		{"say",Game_Params.PlayerName,"I guess right now there is no better way than to try it myself."},
 		{"say",Game_Params.PlayerName,"I'm even talking to myself anyway!"},
-		{"scene","black_screen"},
+		{"scene","tutorial_1"},
 		{"character","none"},
 		{"say",Game_Params.PlayerName,"Let's see..."},
 		{"say",Game_Params.PlayerName,"\"To dance is to synchronise your step with the music."},
 		{"say",Game_Params.PlayerName,"\"There are 4 main steps you should be aware of."},
-		{"scene","black_screen"},
+		{"scene","tutorial_2"},
 		{"say",Game_Params.PlayerName,"\"Step A (Press Z),"},
-		{"scene","black_screen"},
+		{"scene","tutorial_3"},
 		{"say",Game_Params.PlayerName,"\"Step B (Press X),"},
-		{"scene","black_screen"},
+		{"scene","tutorial_4"},
 		{"say",Game_Params.PlayerName,"\"Step C (Press C),"},
-		{"scene","black_screen"},
+		{"scene","tutorial_5"},
 		{"say",Game_Params.PlayerName,"\"and Step D (Press V)."},
-		{"scene","black_screen"},
+		{"scene","tutorial_1"},
 		{"say",Game_Params.PlayerName,"\"all you need to do is to do the right step at the right time."},
 		{"say",Game_Params.PlayerName,"(Press the correct keys when the step \"Stars\" reach the target line.)"},
-		{"scene","black_screen"},
+		{"scene","tutorial_6"},
 		{"say",Game_Params.PlayerName,"\"The most important thing to keep in mind is the performance bar."},
 		{"say",Game_Params.PlayerName,"\"If you do the right steps at the right time, audiences will be happy..."},
 		{"say",Game_Params.PlayerName,"\"and your performance bar will be up."},
@@ -115,7 +115,7 @@ function page2()
 		{"say",Game_Params.PlayerName,"What an encouraging guide it is!"},
 		{"character","clara_2"},
 		{"say",Game_Params.PlayerName,"Anyway let's try dancing!"},
-		--{"dance", 1},
+		{"dance", 1},
 		{"goto",3}
 	}
 	return Page
@@ -131,7 +131,7 @@ function page3()
 		{"say",Game_Params.PlayerName,"Whoosh"},
 		{"say",Game_Params.PlayerName,"That's a lot HARDER than I imagined!"},
 		{"say",Game_Params.PlayerName,"I hope I could get better at this after several practices, though."},
-		--{"dance", 2}
+		{"dance", 2},
 		{"song","jesu"},
 		{"scene","black_screen"},
 		{"character","none"},
@@ -175,7 +175,7 @@ function page3()
 		{"say","Mel","Can you show me your dance again?"},
 		{"character","clara_2"},
 		{"say",Game_Params.PlayerName,"Of course!"},
-		--{"dance", 3}
+		{"dance", 3},
 		{"song","jesu"},
 		{"character","mel_1"},
 		{"say","Mel","Maybe I can put you in a special program."},
@@ -229,7 +229,7 @@ function page4()
 		{"say","Mel","Let's do the basic first."},
 		{"say","Mel","We'll first look at the basic step A and step D."},
 		{"say","Mel","Try this song."},
-		--{"dance", 4}
+		{"dance", 4},
 		{"goto",5}
 	}
 	return Page
@@ -252,7 +252,7 @@ function page5()
 		{"say","Mel","What do you say if we proceed the step B and step C training?"},
 		{"character","clara_4"},
 		{"say",Game_Params.PlayerName,"Bring it on!"},
-		--{"dance", 5}
+		{"dance", 5},
 		{"goto",7}
 	}
 	return Page
@@ -284,7 +284,7 @@ function page7()
 		{"character","mel_1"},
 		{"say","Mel","Of course! Trust me."},
 		{"say","Mel","Now let's start."},
-		--{"dance", 6}
+		{"dance", 6},
 		{"goto",9}
 	}
 	return Page
@@ -369,7 +369,7 @@ function page9()
 		{"say","Lawrance","Next, from Mel's School of Ballet, "..Game_Params.PlayerName.."."},
 		{"character","clara_4"},
 		{"say",Game_Params.PlayerName,"It's my turn now! Mel, I'll do my best."},
-		--{"dance", 7}
+		{"dance", 7},
 		{"goto",10}
 	}
 	return Page
@@ -406,7 +406,7 @@ function page10()
 		{"say","Christina","there should be nothing better than to dance together to know each other."},
 		{"character","christina_4"},
 		{"say","Christina","Let it begins."},
-		--{"dance", 8}
+		{"dance", 8},
 		{"goto",11}
 	}
 	return Page
@@ -504,7 +504,7 @@ function page13()
 		{"character","lawrance_1"},
 		{"say","Lawrance","Please welcome the next young talent originally from Mel's School of Ballet,"},
 		{"say","Lawrance","Miss "..Game_Params.PlayerName.."!"},
-		--{"dance", 9}
+		{"dance", 9},
 		{"goto",14}
 	}
 	return Page
@@ -613,7 +613,8 @@ function page15()
 		{"say","Lawrance","please welcome a newborn star from Mel's School of Ballet, Miss "..Game_Params.PlayerName},
 		{"character","clara_5"},
 		{"say",Game_Params.PlayerName,"Here I go again."},
-		--{"dance", 10}
+		{"scene","clara_dance"},
+		{"dance", 10},
 		
 		{"song","adventure"},
 		{"scene","red_hall_inside"},
@@ -640,8 +641,8 @@ function page15()
 		{"character","clara_5"},
 		{"say",Game_Params.PlayerName,"Dance with Christina?"},
 		
-		{"scene","christinas_dance"},
-		--{"dance", 11}
+		{"scene","final_battle"},
+		{"dance", 11},
 		{"goto",16}
 	}
 	return Page

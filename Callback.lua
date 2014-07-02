@@ -1,10 +1,10 @@
 --[[
-Ballet-battle — Callback functions
+La Ballerina — Callback functions
 
-Version: 0.0.1
-Last update: 26.06.14
+Version: 0.9
+Last update: 30.06.14
 Programmer: Wattanit Hotrakool (@rorasa)
-            CannonLight Games
+            Cannon Light Games
 -----------------------------------------------------------
 LÖVE version: 0.9.0
 ]]
